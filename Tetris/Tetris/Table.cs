@@ -11,20 +11,30 @@ namespace Tetris
         private int columns;
         private int score;
         private int linesAssembled;
+        private int lvl;
+        private int StepLvl = 3;
+        private int thisLevelLinesAssembled;
         private bool gameOver = false;
+        public bool LvlUp;
         private Tetramino currentTetramino;
         private Rectangle[,] Field;
         static private Brush fieldBrush = Brushes.White;
         static private Brush granBrush = Brushes.Silver;
-
+        public int GetLvlProc()
+        {
+            if (linesAssembled == 0 || thisLevelLinesAssembled == StepLvl) return 0;
+            return 100 * thisLevelLinesAssembled/ StepLvl;
+        }
 
         public Table(Grid TetrisGrid)
         {
+            LvlUp = false;
             rows = TetrisGrid.RowDefinitions.Count;
             columns = TetrisGrid.ColumnDefinitions.Count;
             score = 0;
             linesAssembled = 0;
-
+            lvl = 1;
+            thisLevelLinesAssembled = 0;
             Field = new Rectangle[columns, rows];
             for (int x = 0; x < columns; x++)
             {
@@ -44,6 +54,7 @@ namespace Tetris
         }
         public int Score => score;
         public int Lines => linesAssembled;
+        public int LVL => lvl;
         public bool GameOver => gameOver;
         private void CurrentTetraminoDraw()
         {
@@ -91,9 +102,21 @@ namespace Tetris
                     RemoveRow(y);
                     score += 100;
                     linesAssembled += 1;
+                    thisLevelLinesAssembled += 1;
+                    CheckLvlUp();
                 }
             }
 
+        }
+        private void CheckLvlUp()
+        {
+            if (thisLevelLinesAssembled == StepLvl)
+            {
+                lvl++;
+                thisLevelLinesAssembled = 0;
+                StepLvl++;
+                LvlUp = true;
+            }
         }
         private void RemoveRow(int row)
         {

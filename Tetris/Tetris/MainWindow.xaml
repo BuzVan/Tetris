@@ -6,10 +6,17 @@
         Initialized="MainWindow_Initialized" Background="DimGray" MinWidth="525" MinHeight="570" MaxWidth="525" MaxHeight="570" WindowStartupLocation="CenterScreen">
     <DockPanel LastChildFill="True" Height="539" VerticalAlignment="Bottom">
         <StackPanel DockPanel.Dock="Right" Width="172">
-            <Label Content="Label" Height="56" Name="Score" FontSize="28" FontWeight="Bold" />
-            <Label Content="Label" Height="56" x:Name="Lines" FontSize="28" FontWeight="Bold" />
+            <Label Content="Score:" Height="56" Name="Score" FontSize="20" FontWeight="Bold" />
+            <Label Content="Lines:" Height="56" x:Name="Lines" FontSize="20" FontWeight="Bold" />
+            <ProgressBar x:Name="LevelProgressBar"  
+                 Minimum="1" 
+                 Maximum="99" 
+                 Value="59" 
+                 Margin="10,5"  
+                 Height="41"  Foreground="#FF62FF7F"/>
+            <Label Content="Level:" Height="38" x:Name="LvlText" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" RenderTransformOrigin="0.549,-0.875" />
         </StackPanel>
-        <Grid Name="MainGrid" Margin="0,34,0,33" Width="142" Background="#FFAE00FF" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+        <Grid Name="MainGrid" Margin="0,34,0,33" Width="142" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="2"/>

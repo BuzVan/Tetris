@@ -17,22 +17,27 @@ namespace Tetris
     {
         DispatcherTimer Timer;
         Table myBoard;
+        int GameSpeed = 1000;
+        int SpeedStep = 100;
         public MainWindow()
         {
             InitializeComponent();
+            
         }
         void MainWindow_Initialized(object sender, EventArgs e)
         {
             Timer = new DispatcherTimer();
             Timer.Tick += new EventHandler(GameTick);
-            Timer.Interval = new TimeSpan(0, 0, 0, 0, 400);
+            Timer.Interval = new TimeSpan(0, 0, 0, 0, GameSpeed);
             GameStart();
         }
         private void GameStart()
         {
             MainGrid.Children.Clear();
             myBoard = new Table(MainGrid);
+            GameSpeed = 1000;
             Timer.Start();
+            LvlText.Content = "Уровень: " + myBoard.LVL;
         }
         private void GamePause()
         {
@@ -51,12 +56,19 @@ namespace Tetris
         }
         void GameTick(object sender, EventArgs e)
         {
-            Score.Content = myBoard.Score.ToString();
-            Lines.Content = myBoard.Lines.ToString();
+            LevelProgressBar.Value = myBoard.GetLvlProc();
+            
+            Score.Content = "Score: " + myBoard.Score.ToString();
+            Lines.Content = "Lines: " + myBoard.Lines.ToString();
             myBoard.CurTetraminoMovDown();
             if (myBoard.GameOver)
                 GameOver();
-
+            if (myBoard.LvlUp)
+            {
+                Timer.Interval = new TimeSpan(0, 0, 0, 0, GameSpeed - SpeedStep*myBoard.LVL);
+                myBoard.LvlUp = false;
+                LvlText.Content = "Level: " + myBoard.LVL;
+            }
         }
         private void HandleKeyDown(object sender, KeyEventArgs e)
         {

@@ -26,3 +26,16 @@ I:\4семестр\Tetris\Tetris\obj\Debug\Tetris.csproj.GenerateResource.cache
 I:\4семестр\Tetris\Tetris\obj\Debug\Tetris.csproj.CoreCompileInputs.cache
 I:\4семестр\Tetris\Tetris\obj\Debug\Tetris.exe
 I:\4семестр\Tetris\Tetris\obj\Debug\Tetris.pdb
+D:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.exe.config
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.exe
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.pdb
+D:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.exe
+D:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.pdb
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csprojResolveAssemblyReference.cache
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\MainWindow.baml
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\MainWindow.g.cs
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\App.g.cs
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris_MarkupCompile.cache
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.g.resources
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.Properties.Resources.resources
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csproj.GenerateResource.Cache
