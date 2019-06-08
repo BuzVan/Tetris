@@ -39,3 +39,5 @@ D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetri
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.g.resources
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.Properties.Resources.resources
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csproj.GenerateResource.Cache
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.baml
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.g.cs

@@ -7,91 +7,108 @@ namespace Tetris
 {
     public class Table
     {
-        private int rows;
-        private int columns;
+        class GridField
+        {
+            public int rows;
+            public int columns;
+            public Rectangle[,] Field;
+            public GridField(Grid grid)
+            {
+                rows = grid.RowDefinitions.Count;
+                columns = grid.ColumnDefinitions.Count;
+                Field = new Rectangle[columns, rows];
+                for (int x = 0; x < columns; x++)
+                {
+                    for (int y = 0; y < rows; y++)
+                    {
+                        Field[x, y] = new System.Windows.Shapes.Rectangle();
+                        Field[x, y].Fill = fieldBrush;
+                        Field[x, y].Stroke = granBrush;
+                        Field[x, y].StrokeThickness = 1;
+                        Grid.SetColumn(Field[x, y], x);
+                        Grid.SetRow(Field[x, y], y);
+                        grid.Children.Add(Field[x, y]);
+                    }
+                }
+            }
+            
+    }
+
         private int score;
         private int linesAssembled;
         private int lvl;
-        private int StepLvl = 3;
+        public int StepLvl = 3;
         private int thisLevelLinesAssembled;
         private bool gameOver = false;
         public bool LvlUp;
         private Tetramino currentTetramino;
-        private Rectangle[,] Field;
-        static private Brush fieldBrush = Brushes.White;
-        static private Brush granBrush = Brushes.Silver;
+        static private Brush fieldBrush = Brushes.Black;
+        static private Brush granBrush = Brushes.White;
+        private GridField TetrisField;
+        private GridField NextFigGrid;
+        private Tetramino nextTetramino;
         public int GetLvlProc()
         {
             if (linesAssembled == 0 || thisLevelLinesAssembled == StepLvl) return 0;
             return 100 * thisLevelLinesAssembled/ StepLvl;
         }
 
-        public Table(Grid TetrisGrid)
+        public Table(Grid TetrisGrid, Grid NextFigGrid)
         {
+            TetrisField = new GridField(TetrisGrid);
+            this.NextFigGrid = new GridField(NextFigGrid);
             LvlUp = false;
-            rows = TetrisGrid.RowDefinitions.Count;
-            columns = TetrisGrid.ColumnDefinitions.Count;
             score = 0;
             linesAssembled = 0;
             lvl = 1;
             thisLevelLinesAssembled = 0;
-            Field = new Rectangle[columns, rows];
-            for (int x = 0; x < columns; x++)
-            {
-                for (int y = 0; y < rows; y++)
-                {
-                    Field[x, y] = new System.Windows.Shapes.Rectangle();
-                    Field[x, y].Fill = fieldBrush;
-                    Field[x, y].Stroke = granBrush;
-                    Field[x, y].StrokeThickness = 1;
-                    Grid.SetColumn(Field[x, y], x);
-                    Grid.SetRow(Field[x, y], y);
-                    TetrisGrid.Children.Add(Field[x, y]);
-                }
-            }
+            
             currentTetramino = new Tetramino();
-            CurrentTetraminoDraw();
+            TetraminoDraw(TetrisField, currentTetramino);
+            nextTetramino = new Tetramino();
+            TetraminoDraw(this.NextFigGrid, nextTetramino);
         }
         public int Score => score;
         public int Lines => linesAssembled;
         public int LVL => lvl;
         public bool GameOver => gameOver;
-        private void CurrentTetraminoDraw()
+        private void TetraminoDraw(GridField grid, Tetramino tetramino)
         {
-            Point pos = currentTetramino.Position;
-            Point[] figure = currentTetramino.Figure;
-            Brush color = currentTetramino.Color;
+            Point pos = tetramino.Position;
+            Point[] figure = tetramino.Figure;
+            Brush color = tetramino.Color;
             foreach (Point P in figure)
             {
-                Field[(int)(P.X + pos.X) + ((columns / 2) - 1),
+                grid.Field[(int)(P.X + pos.X) + ((grid.columns / 2) - 1),
                     (int)(P.Y + pos.Y)].Fill = color;
             }
         }
-        private void CurrentTetraminoErase()
+        private void TetraminoErase(GridField grid, Tetramino tetramino)
         {
-            Point pos = currentTetramino.Position;
-            Point[] figure = currentTetramino.Figure;
+            Point pos = tetramino.Position;
+            Point[] figure = tetramino.Figure;
             foreach (Point S in figure)
             {
-                Field[(int)(S.X + pos.X) + ((columns / 2) - 1),
+                grid.Field[(int)(S.X + pos.X) + ((grid.columns / 2) - 1),
                     (int)(S.Y + pos.Y)].Fill = fieldBrush;
             }
         }
         private void CheckGameOver()
         {
-            for (int x = 0; x < columns; x++)
-                if (Field[x, 0].Fill != fieldBrush)
+            for (int x = 0; x < TetrisField.columns; x++)
+                if (TetrisField.Field[x, 0].Fill != fieldBrush)
                     gameOver = true;
         }
         private void CheckRows()
         {
             bool full;
-            for (int y = 0; y < rows; y++)
+            int kol = 0;
+            for (int y = 0; y < TetrisField.rows; y++)
             {
                 full = true;
-                for (int x = 0; x < columns; x++)
+                for (int x = 0; x < TetrisField.columns; x++)
                 {
-                    if (Field[x, y].Fill == fieldBrush)
+                    if (TetrisField.Field[x, y].Fill == fieldBrush)
                     {
                         full = false;
                         break;
@@ -99,14 +116,20 @@ namespace Tetris
                 }
                 if (full)
                 {
+                    kol++;
                     RemoveRow(y);
                     score += 100;
                     linesAssembled += 1;
                     thisLevelLinesAssembled += 1;
-                    CheckLvlUp();
+                    
                 }
             }
 
+            if (kol > 0)
+            {
+                score += (kol - 1) * 100;//бонус за несколько подряд удалённых линий
+                CheckLvlUp();
+            }
         }
         private void CheckLvlUp()
         {
@@ -122,9 +145,9 @@ namespace Tetris
         {
             for (int y = row; y > 0; y--)
             {
-                for (int x = 0; x < columns; x++)
+                for (int x = 0; x < TetrisField.columns; x++)
                 {
-                    Field[x, y].Fill = Field[x, y - 1].Fill;
+                    TetrisField.Field[x, y].Fill = TetrisField.Field[x, y - 1].Fill;
                 }
             }
         }
@@ -133,16 +156,16 @@ namespace Tetris
             Point pos = currentTetramino.Position;
             Point[] figure = currentTetramino.Figure;
             bool canMove = true;
-            CurrentTetraminoErase();
+            TetraminoErase(TetrisField, currentTetramino);
             foreach (Point P in figure)
             {
                 // не можем сдвинуть влево - у левой границы поля
-                if (((int)(P.X + pos.X) + ((columns / 2) - 1) - 1) < 0)
+                if (((int)(P.X + pos.X) + ((TetrisField.columns / 2) - 1) - 1) < 0)
                 {
                     canMove = false;
                 }
                 // не можем влево - слева стоит фигура
-                else if (Field[((int)(P.X + pos.X) + ((columns / 2) - 1) - 1),
+                else if (TetrisField.Field[((int)(P.X + pos.X) + ((TetrisField.columns / 2) - 1) - 1),
                     (int)(P.Y + pos.Y)].Fill != fieldBrush)
                 {
                     canMove = false;
@@ -150,21 +173,21 @@ namespace Tetris
             }
             if (canMove)
                 currentTetramino.MoveLeft();
-            CurrentTetraminoDraw();
+            TetraminoDraw(TetrisField, currentTetramino);
         }
         public void CurTetraminoMoveRight()
         {
             Point pos = currentTetramino.Position;
             Point[] figure = currentTetramino.Figure;
-            CurrentTetraminoErase();
+            TetraminoErase(TetrisField, currentTetramino);
             bool canMove = true;
             foreach (Point S in figure)
             {
-                if (((int)(S.X + pos.X) + ((columns / 2) - 1) + 1) >= columns)
+                if (((int)(S.X + pos.X) + ((TetrisField.columns / 2) - 1) + 1) >= TetrisField.columns)
                 {
                     canMove = false;
                 }
-                else if (Field[((int)(S.X + pos.X) + ((columns / 2) - 1) + 1),
+                else if (TetrisField.Field[((int)(S.X + pos.X) + ((TetrisField.columns / 2) - 1) + 1),
                     (int)(S.Y + pos.Y)].Fill != fieldBrush)
                 {
                     canMove = false;
@@ -172,21 +195,23 @@ namespace Tetris
             }
             if (canMove)
                 currentTetramino.MoveRight();
-            CurrentTetraminoDraw();
+            TetraminoDraw(TetrisField, currentTetramino);
         }
-        public void CurTetraminoMovDown()
+        public void CurTetraminoMovDown(bool CoolGame=false)
         {
+            // бонус за быструю игру (нажата кнопка вниз)
+            if (CoolGame) score += 1*lvl;
             Point pos = currentTetramino.Position;
             Point[] figure = currentTetramino.Figure;
             bool canMove = true;
-            CurrentTetraminoErase();
+            TetraminoErase(TetrisField, currentTetramino);
             foreach (Point S in figure)
             {
-                if (((int)(S.Y + pos.Y) + 1) >= rows)
+                if (((int)(S.Y + pos.Y) + 1) >= TetrisField.rows)
                 {
                     canMove = false;
                 }
-                else if (Field[((int)(S.X + pos.X) + ((columns / 2) - 1)),
+                else if (TetrisField.Field[((int)(S.X + pos.X) + ((TetrisField.columns / 2) - 1)),
                     (int)(S.Y + pos.Y) + 1].Fill != fieldBrush)
                 {
                     canMove = false;
@@ -195,14 +220,18 @@ namespace Tetris
             if (canMove)
             {
                 currentTetramino.MoveDown();
-                CurrentTetraminoDraw();
+                TetraminoDraw(TetrisField, currentTetramino);
             }
             else
             {
-                CurrentTetraminoDraw();
+                TetraminoDraw(TetrisField, currentTetramino);
                 CheckRows();
                 CheckGameOver();
-                currentTetramino = new Tetramino();
+                currentTetramino = nextTetramino;
+                TetraminoErase(NextFigGrid, nextTetramino);
+                nextTetramino = new Tetramino();
+                TetraminoDraw(NextFigGrid, nextTetramino);
+                score += LVL * 10; //бонус за новую фигуру
             }
         }
         public void CurTetraminoMoveRotate()
@@ -212,7 +241,7 @@ namespace Tetris
             Point[] figure = currentTetramino.Figure;
             bool canMove = true;
             figure.CopyTo(S, 0);
-            CurrentTetraminoErase();
+            TetraminoErase(TetrisField, currentTetramino);
             for (int i = 0; i < S.Length; i++)
             {
                 double x = S[i].X;
@@ -223,19 +252,19 @@ namespace Tetris
                 {
                     canMove = false;
                 }
-                else if (((int)((S[i].Y + pos.Y) + 1)) >= rows) // снизу - стена
+                else if (((int)((S[i].Y + pos.Y) + 1)) >= TetrisField.rows) // снизу - стена
                 {
                     canMove = false;
                 }
-                else if (((int)(S[i].X + pos.X) + ((columns / 2) - 1) + 1) <= 0) //слева - стена
+                else if (((int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1) + 1) <= 0) //слева - стена
                 {
                     canMove = false;
                 }
-                else if (((int)(S[i].X + pos.X) + ((columns / 2) - 1) + 1) > columns) // справа - стена
+                else if (((int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1) + 1) > TetrisField.columns) // справа - стена
                 {
                     canMove = false;
                 }
-                else if (Field[(int)(S[i].X + pos.X) + ((columns / 2) - 1),
+                else if (TetrisField.Field[(int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1),
                     (int)(S[i].Y + pos.Y)].Fill != fieldBrush)
                 {
 
@@ -244,7 +273,7 @@ namespace Tetris
             }
             if (canMove)
                 currentTetramino.Turn();
-            CurrentTetraminoDraw();
+            TetraminoDraw(TetrisField, currentTetramino);
         }
     }
 }
