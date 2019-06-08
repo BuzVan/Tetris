@@ -35,6 +35,10 @@ namespace Tetris
             gameWindow.ShowDialog();
         }
 
+        private void CustomButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 

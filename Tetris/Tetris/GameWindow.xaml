@@ -6,20 +6,22 @@
         Initialized="GameWindow_Initialized" Background="DimGray" MinWidth="525" MinHeight="570" MaxWidth="525" MaxHeight="570" WindowStartupLocation="CenterScreen">
     <DockPanel Height="539">
         <Grid DockPanel.Dock="Right" Width="172" Margin="0,0,0,10">
-            <Label Content="Score:" Height="56" Name="Score" FontSize="20" FontWeight="Bold" Margin="0,184,0,289" />
-            <Label Content="Lines:" Height="56" x:Name="Lines" FontSize="20" FontWeight="Bold" Margin="0,240,0,233" />
+            <Label Content="Score:" Height="56" Name="Score" FontSize="20" FontWeight="Bold" Margin="0,181,0,292" />
+            <Label Content="Lines:" Height="56" x:Name="Lines" FontSize="20" FontWeight="Bold" Margin="0,237,0,236" />
             <ProgressBar x:Name="LevelProgressBar"  
                  Minimum="1" 
                  Maximum="99" 
                  Value="59" 
-                 Margin="10,301,10,187"  
+                 Margin="10,293,10,195"  
                  Height="41"  
                  Background="#FFDDDDDD"
                  Foreground="#FF62FF7F"/>
-            <Label Content="Level:" Height="38" x:Name="LvlText" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" RenderTransformOrigin="0.549,-0.875" Margin="10,301,10,190"  />
+            <Label Content="Level:" x:Name="LvlText" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" RenderTransformOrigin="0.549,-0.875" Margin="10,295,10,193"  />
             <Button Content="В главное меню"  Margin="10,461,10,0" FontSize="20" Background="#FFDDDDDD"/>
-            <Grid x:Name="NextFigGrid" HorizontalAlignment="Left" Height="55" Margin="28,61,0,0" VerticalAlignment="Top" Width="109">
+            <Grid x:Name="NextFigGrid" HorizontalAlignment="Left" Height="116" Margin="37,60,0,0" VerticalAlignment="Top" Width="109">
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>

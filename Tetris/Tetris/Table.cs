@@ -75,7 +75,7 @@ namespace Tetris
         private void TetraminoDraw(GridField grid, Tetramino tetramino)
         {
             Point pos = tetramino.Position;
-            Point[] figure = tetramino.Figure;
+            Point[] figure = tetramino.Cells;
             Brush color = tetramino.Color;
             foreach (Point P in figure)
             {
@@ -86,7 +86,7 @@ namespace Tetris
         private void TetraminoErase(GridField grid, Tetramino tetramino)
         {
             Point pos = tetramino.Position;
-            Point[] figure = tetramino.Figure;
+            Point[] figure = tetramino.Cells;
             foreach (Point S in figure)
             {
                 grid.Field[(int)(S.X + pos.X) + ((grid.columns / 2) - 1),
@@ -154,7 +154,7 @@ namespace Tetris
         public void CurentTetraminoMoveLeft()
         {
             Point pos = currentTetramino.Position;
-            Point[] figure = currentTetramino.Figure;
+            Point[] figure = currentTetramino.Cells;
             bool canMove = true;
             TetraminoErase(TetrisField, currentTetramino);
             foreach (Point P in figure)
@@ -178,7 +178,7 @@ namespace Tetris
         public void CurTetraminoMoveRight()
         {
             Point pos = currentTetramino.Position;
-            Point[] figure = currentTetramino.Figure;
+            Point[] figure = currentTetramino.Cells;
             TetraminoErase(TetrisField, currentTetramino);
             bool canMove = true;
             foreach (Point S in figure)
@@ -202,7 +202,7 @@ namespace Tetris
             // бонус за быструю игру (нажата кнопка вниз)
             if (CoolGame) score += 1*lvl;
             Point pos = currentTetramino.Position;
-            Point[] figure = currentTetramino.Figure;
+            Point[] figure = currentTetramino.Cells;
             bool canMove = true;
             TetraminoErase(TetrisField, currentTetramino);
             foreach (Point S in figure)
@@ -238,7 +238,7 @@ namespace Tetris
         {
             Point pos = currentTetramino.Position;
             Point[] S = new Point[4];
-            Point[] figure = currentTetramino.Figure;
+            Point[] figure = currentTetramino.Cells;
             bool canMove = true;
             figure.CopyTo(S, 0);
             TetraminoErase(TetrisField, currentTetramino);
@@ -274,6 +274,7 @@ namespace Tetris
             if (canMove)
                 currentTetramino.Turn();
             TetraminoDraw(TetrisField, currentTetramino);
+            
         }
     }
 }

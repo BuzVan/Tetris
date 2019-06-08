@@ -5,7 +5,8 @@
         Background="DimGray" MinWidth="525" MinHeight="570" MaxWidth="525" MaxHeight="570" WindowStartupLocation="CenterScreen">
     <Grid HorizontalAlignment="Left" Height="466" Margin="305,32,0,0" VerticalAlignment="Top" Width="185">
         <Button x:Name="NewGameButton" Content="Начать игру" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="165" Height="50" Click="NewGameButton_Click"/>
-        <Button x:Name="ExitButton" Content="Выход" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top" Width="165" Height="50" Click="ExitButton_Click"/>
+        <Button x:Name="ExitButton" Content="Выход" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top" Width="165" Height="50" Click="ExitButton_Click"/>
+        <Button x:Name="CustomButton" Content="Кастомизация" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="165" Height="50" Click="CustomButton_Click" />
 
     </Grid>
 </Window>
