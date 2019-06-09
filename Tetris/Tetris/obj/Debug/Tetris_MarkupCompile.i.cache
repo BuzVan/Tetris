@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 I:\4семестр\Учебная практика\Tetris\Tetris\App.xaml
-2-114757256
+3-411191450
 
-121690475694
+13249997643
 131569487696
-GameWindow.xaml;MainWindow.xaml;
+CustomWindow.xaml;GameWindow.xaml;MainWindow.xaml;
 
-True
+False
 

@@ -79,6 +79,11 @@ namespace Tetris
     }
     public class Tetramino
     {
+        public char NameFig
+        {
+            get;
+            protected set;
+        }
         private Point position;
         private Point[] cells;
         private Brush color;
@@ -86,6 +91,11 @@ namespace Tetris
         {
             position = new Point(0, 0);
             SetRandomFigure();
+        }
+        public Tetramino(char fig)
+        {
+            position = new Point(0, 0);
+            SetFig(fig);
         }
         public Brush Color => color;
         public Point Position => position;
@@ -137,6 +147,14 @@ namespace Tetris
             color = FigureParams.ColorsDic[fig];
             cells = new Point[FigureParams.CellsDic[fig].Length];
             FigureParams.CellsDic[fig].ToArray().CopyTo(cells, 0);
+            NameFig = fig;
+        }
+        public void SetFig(char f)
+        {
+            color = FigureParams.ColorsDic[f];
+            cells = new Point[FigureParams.CellsDic[f].Length];
+            FigureParams.CellsDic[f].ToArray().CopyTo(cells, 0);
+            NameFig = f;
         }
     }
 }

@@ -18,7 +18,6 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -29,15 +28,15 @@ namespace Tetris
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             GameWindow gameWindow = new GameWindow();
-
-            //Теперь MainWindow главное окно для taskWindow
             gameWindow.Owner = this;
             gameWindow.ShowDialog();
         }
 
         private void CustomButton_Click(object sender, RoutedEventArgs e)
         {
-
+            CustomWindow customWindow = new CustomWindow();
+            customWindow.Owner = this;
+            customWindow.ShowDialog();
         }
     }
 

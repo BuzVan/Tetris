@@ -17,7 +17,7 @@
                  Background="#FFDDDDDD"
                  Foreground="#FF62FF7F"/>
             <Label Content="Level:" x:Name="LvlText" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" RenderTransformOrigin="0.549,-0.875" Margin="10,295,10,193"  />
-            <Button Content="В главное меню"  Margin="10,461,10,0" FontSize="20" Background="#FFDDDDDD"/>
+            <Button Content="В главное меню"  Margin="10,461,10,0" FontSize="20" Background="#FFDDDDDD" Click="Button_Click"/>
             <Grid x:Name="NextFigGrid" HorizontalAlignment="Left" Height="116" Margin="37,60,0,0" VerticalAlignment="Top" Width="109">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -34,7 +34,7 @@
             </Grid>
             <Label Content="Next:" Height="56" x:Name="Score_Copy" FontSize="20" FontWeight="Bold" Margin="0,18,0,455" />
         </Grid>
-        <Grid Name="MainGrid" Margin="30,30,30,29" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="132">
+        <Grid Name="MainGrid" Margin="30,30,30,29" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="130" Height="480">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="2"/>

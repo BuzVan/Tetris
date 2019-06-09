@@ -55,7 +55,7 @@ namespace Tetris
         {
             Timer.Stop();
             MessageBox.Show(
-                String.Format("Игра окончена.\nНабрано очков: {0}\nУдалено строк: {1}.", myBoard.Score, myBoard.Lines),
+                String.Format("Игра окончена.\nНабрано очков: {0}\nУдалено линий: {1}.", myBoard.Score, myBoard.Lines),
                 "Конец игры!",
                 MessageBoxButton.OK, MessageBoxImage.Asterisk);
             Close();
@@ -112,6 +112,12 @@ namespace Tetris
                 default:
                     break;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GameOver();
+            Close();
         }
     }
 }
