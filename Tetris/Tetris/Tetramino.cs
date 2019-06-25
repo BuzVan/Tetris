@@ -8,21 +8,98 @@ using System.Windows.Media;
 
 namespace Tetris
 {
+    public static class FigureParams
+    {
+        public static Dictionary<char, Brush> ColorsDic = new Dictionary<char, Brush>
+        {
+            ['I'] = Brushes.Cyan,
+            ['J'] = Brushes.Blue,
+            ['L'] = Brushes.Orange,
+            ['O'] = Brushes.Yellow,
+            ['S'] = Brushes.Green,
+            ['Z'] = Brushes.Red,
+            ['T'] = Brushes.Purple
+        };
+        public static Dictionary<char, Point[]> CellsDic = new Dictionary<char, Point[]>
+        {
+            ['I'] = new Point[]
+            {
+                    new Point(-1, 0),
+                    new Point(0, 0),
+                    new Point(1, 0),
+                    new Point(2, 0)
+            },
+            ['J'] = new Point[]
+            {
+                        new Point(-1,0),
+                        new Point(-1,1),
+                        new Point(0,1),
+                        new Point(1,1)
+            },
+            ['L'] = new Point[]
+            {
+                        new Point(1,0),
+                        new Point(-1,1),
+                        new Point(0,1),
+                        new Point(1,1)
+            },
+            ['O'] = new Point[]
+            {
+                        new Point(0,0),
+                        new Point(0,1),
+                        new Point(1,0),
+                        new Point(1,1)
+            },
+            ['S'] = new Point[]
+            {
+                        new Point(0,1),
+                        new Point(-1,1),
+                        new Point(0,0),
+                        new Point(1,0)
+            },
+            ['Z'] = new Point[]
+            {
+                        new Point(0,0),
+                        new Point(-1,0),
+                        new Point(0,1),
+                        new Point(1,1)
+            },
+            ['T'] = new Point[]
+            {
+                        new Point(0,1),
+                        new Point(-1,1),
+                        new Point(0,0),
+                        new Point(1,1)
+            }
+        };
+        public static void SetColor(char Figure, Brush NewColor)
+        {
+            ColorsDic[Figure] = NewColor;
+        }
+    }
     public class Tetramino
     {
+        public char NameFig
+        {
+            get;
+            protected set;
+        }
         private Point position;
-        private Point[] figure;
+        private Point[] cells;
         private Brush color;
-        private bool IsTurning;
         public Tetramino()
         {
             position = new Point(0, 0);
-            color = Brushes.Transparent;
-            figure = SetRandomFigure();
+            SetRandomFigure();
+        }
+        public Tetramino(char fig)
+        {
+            position = new Point(0, 0);
+            SetFig(fig);
         }
         public Brush Color => color;
         public Point Position => position;
-        public Point[] Figure => figure;
+        public Point[] Cells => cells;
         public void MoveLeft()
         {
             position.X -= 1;
@@ -37,94 +114,47 @@ namespace Tetris
         }
         public void Turn()
         {
-            if (IsTurning)
+            for (int i = 0; i < cells.Length; i++)
             {
-                for (int i = 0; i < figure.Length; i++)
-                {
-                    double x = figure[i].X;
-                    figure[i].X = -figure[i].Y;
-                    figure[i].Y = x;
-                }
+                double x = cells[i].X;
+                cells[i].X = 
+                cells[i].X = -cells[i].Y;
+                cells[i].Y = x;
             }
         }
-        private Point[] SetRandomFigure()
+        private void SetRandomFigure()
         {
             Random rand = new Random();
-            switch (rand.Next() % 7)
+            char fig = '1';
+            switch (rand.Next() % FigureParams.CellsDic.Count)
             {
                 case 0: // I
-                    IsTurning = true;
-                    color = Brushes.Cyan;
-                    return new Point[]
-                    {
-                        new Point(-1,0),
-                        new Point(0,0),
-                        new Point(1,0),
-                        new Point(2,0),
-                    }; //0000
+                    fig = 'I'; break;
                 case 1: // J
-                    IsTurning = true;
-                    color = Brushes.Blue;
-                    return new Point[]
-                    {
-                        new Point(-1,0),
-                        new Point(-1,1),
-                        new Point(0,1),
-                        new Point(1,1),
-                    };
+                    fig = 'J'; break;
                 case 2: // L
-                    IsTurning = true;
-                    color = Brushes.Orange;
-                    return new Point[]
-                    {
-                        new Point(1,0),
-                        new Point(-1,1),
-                        new Point(0,1),
-                        new Point(1,1),
-                    };
+                    fig = 'L'; break;
                 case 3: // O
-                    IsTurning = false;
-                    color = Brushes.Yellow;
-                    return new Point[]
-                    {
-                        new Point(0,0),
-                        new Point(0,1),
-                        new Point(1,0),
-                        new Point(1,1),
-                    };
+                    fig = 'O'; break;
                 case 4: // S
-                    IsTurning = true;
-                    color = Brushes.Green;
-                    return new Point[]
-                    {
-                        new Point(0,1),
-                        new Point(-1,1),
-                        new Point(0,0),
-                        new Point(1,0),
-                    };
+                    fig = 'S'; break;
                 case 5: // Z
-                    IsTurning = true;
-                    color = Brushes.Red;
-                    return new Point[]
-                    {
-                        new Point(0,0),
-                        new Point(-1,0),
-                        new Point(0,1),
-                        new Point(1,1),
-                    };
+                    fig = 'Z'; break;
                 case 6: // T
-                    IsTurning = true;
-                    color = Brushes.Purple;
-                    return new Point[]
-                    {
-                        new Point(0,1),
-                        new Point(-1,1),
-                        new Point(0,0),
-                        new Point(1,1),
-                    };
-                default:
-                    return null;
+                    fig = 'T'; break;
+                default: break;
             }
+            color = FigureParams.ColorsDic[fig];
+            cells = new Point[FigureParams.CellsDic[fig].Length];
+            FigureParams.CellsDic[fig].ToArray().CopyTo(cells, 0);
+            NameFig = fig;
+        }
+        private void SetFig(char f)
+        {
+            color = FigureParams.ColorsDic[f];
+            cells = new Point[FigureParams.CellsDic[f].Length];
+            FigureParams.CellsDic[f].ToArray().CopyTo(cells, 0);
+            NameFig = f;
         }
     }
 }
