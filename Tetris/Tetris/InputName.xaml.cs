@@ -33,12 +33,17 @@ namespace Tetris
         private void NameTB_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && PressEnter)  button_Click(sender, e);
-            if (e.Key == Key.Space) NameTB.Text.Remove(NameTB.Text.Length - 1, 1);
         }
 
         private void NameTB_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter) PressEnter = true;
+        }
+
+        private void NameTB_TextChange(object sender, TextChangedEventArgs e)
+        {
+            NameTB.Text = string.Join("",NameTB.Text.Split());
+            NameTB.SelectionStart = NameTB.Text.Length;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

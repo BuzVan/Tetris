@@ -1,17 +1,3 @@
-I:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.exe.config
-I:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.exe
-I:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.pdb
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csprojAssemblyReference.cache
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\MainWindow.g.cs
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\App.g.cs
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris_MarkupCompile.cache
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\MainWindow.baml
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.g.resources
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.Properties.Resources.resources
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csproj.GenerateResource.cache
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csproj.CoreCompileInputs.cache
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.exe
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.pdb
 I:\4семестр\Tetris\Tetris\bin\Debug\Tetris.exe.config
 I:\4семестр\Tetris\Tetris\bin\Debug\Tetris.exe
 I:\4семестр\Tetris\Tetris\bin\Debug\Tetris.pdb
@@ -39,10 +25,6 @@ D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetri
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.g.resources
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.Properties.Resources.resources
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csproj.GenerateResource.Cache
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.baml
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.g.cs
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.baml
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.g.cs
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.baml
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.baml
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.g.cs
@@ -51,7 +33,23 @@ D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Recor
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\RecordsTable.g.cs
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.baml
 D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.g.cs
+I:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.exe.config
+I:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.exe
+I:\4семестр\Учебная практика\Tetris\Tetris\bin\Debug\Tetris.pdb
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.baml
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.baml
 I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.baml
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\MainWindow.baml
 I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\RecordsTable.baml
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.g.cs
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.g.cs
 I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.g.cs
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\MainWindow.g.cs
 I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\RecordsTable.g.cs
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\App.g.cs
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris_MarkupCompile.cache
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.g.resources
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csproj.CoreCompileInputs.cache
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.exe
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.pdb
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\Tetris.csprojAssemblyReference.cache

@@ -40,6 +40,7 @@ namespace Tetris
         private void GameStart()
         {
             MainGrid.Children.Clear();
+            MainGrid.Background = GridField.fieldBrush;
             myBoard = new Table(MainGrid, NextFigGrid);
             GameSpeed = 1000;
             Timer.Interval = new TimeSpan(0, 0, 0, 0, GameSpeed);

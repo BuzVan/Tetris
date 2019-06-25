@@ -37,6 +37,7 @@ namespace Tetris
         public Rectangle[,] Field;
         public GridField(Grid grid)
         {
+            grid.Background = GridField.fieldBrush;
             rows = grid.RowDefinitions.Count;
             columns = grid.ColumnDefinitions.Count;
             Field = new Rectangle[columns, rows];
@@ -51,7 +52,7 @@ namespace Tetris
                     grid.Children.Add(Field[x, y]);
                     Field[x, y].Fill = fieldBrush;
                     Field[x, y].Stroke = granBrush;
-                    Field[x, y].StrokeThickness = 1;
+                    Field[x, y].StrokeThickness = 0.5;
                 }
             }
         }
