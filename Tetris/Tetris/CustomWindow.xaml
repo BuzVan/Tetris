@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Тетрис" Height="570" Width="525" 
         
-        Background="DimGray" MinWidth="525" MinHeight="570" MaxWidth="525" MaxHeight="570" WindowStartupLocation="CenterScreen">
+        Background="DimGray" MinWidth="525" MinHeight="570" MaxWidth="525" MaxHeight="570" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
     <DockPanel Height="539">
         <Grid DockPanel.Dock="Right" Width="502" Margin="0,10">
             <Grid.ColumnDefinitions>

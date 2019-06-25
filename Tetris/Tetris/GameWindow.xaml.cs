@@ -58,6 +58,12 @@ namespace Tetris
                 String.Format("Игра окончена.\nНабрано очков: {0}\nУдалено линий: {1}.", myBoard.Score, myBoard.Lines),
                 "Конец игры!",
                 MessageBoxButton.OK, MessageBoxImage.Asterisk);
+           if (RecordsWindow.result.Count < 10 || RecordsWindow.result.Last().Score< myBoard.Score)
+            {
+                InputName recordsWindow = new InputName(myBoard.Score, myBoard.Lines);
+                recordsWindow.Owner = this;
+                recordsWindow.ShowDialog();
+            }
             Close();
         }
         void GameTick(object sender, EventArgs e)
@@ -106,7 +112,7 @@ namespace Tetris
                 case Key.Space:
                     GamePause();
                     break;
-                case Key.Escape: Close();
+                case Key.Escape: Button_Click(sender, e);
                     break;
 
                 default:

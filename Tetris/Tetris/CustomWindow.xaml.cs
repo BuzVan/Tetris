@@ -88,6 +88,7 @@ namespace Tetris
             CancelButton_Click(sender, e);
             Main.TetraminoErase(MainT);
             MainT = new Tetramino((sender as Grid).Name.Last());
+            MainT.MoveDown();
             Main.TetraminoDraw(MainT);
             indexFig = AllFigBrushes.FindIndex(x => x == MainT.Color);
             FigColor = MainT.Color;
@@ -175,7 +176,7 @@ namespace Tetris
             if (FigureParams.CellsDic.Keys.Contains(f))
             {
                 GetGridField(f).DrowField();
-                t.SetFig(f);
+                t = new Tetramino(f);
                 GetGridField(f).TetraminoDraw(t);
                
             }
@@ -184,7 +185,7 @@ namespace Tetris
                 foreach (var item in FigureParams.CellsDic.Keys)
                 {
                     GetGridField(item).DrowField();
-                    t.SetFig(item);
+                    t = new Tetramino(item);
                     GetGridField(item).TetraminoDraw(t);
                 }
                 Main.DrowField();

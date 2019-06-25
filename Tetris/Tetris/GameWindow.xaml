@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Тетрис" Height="570" Width="525" 
         KeyDown="HandleKeyDown"
-        Initialized="GameWindow_Initialized" Background="DimGray" MinWidth="525" MinHeight="570" MaxWidth="525" MaxHeight="570" WindowStartupLocation="CenterScreen">
+        Initialized="GameWindow_Initialized" Background="DimGray" MinWidth="525" MinHeight="570" MaxWidth="525" MaxHeight="570" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
     <DockPanel Height="539">
         <Grid DockPanel.Dock="Right" Width="172" Margin="0,0,0,10">
             <Label Content="Score:" Height="56" Name="Score" FontSize="20" FontWeight="Bold" Margin="0,181,0,292" />
@@ -44,7 +44,6 @@
                 </TransformGroup>
             </Grid.RenderTransform>
             <Grid.RowDefinitions>
-
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>

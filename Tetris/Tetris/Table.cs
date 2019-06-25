@@ -5,9 +5,11 @@ using System.Windows.Shapes;
 
 namespace Tetris
 {
+
+
     class GridField
     {
-        static public Brush fieldBrush = Brushes.Black;
+        static public Brush fieldBrush = Brushes.White;
         static public Brush granBrush = Brushes.White;
         public void TetraminoDraw(Tetramino tetramino)
         {
@@ -251,44 +253,48 @@ namespace Tetris
         }
         public void CurTetraminoMoveRotate()
         {
-            Point pos = currentTetramino.Position;
-            Point[] S = new Point[4];
-            Point[] figure = currentTetramino.Cells;
-            bool canMove = true;
-            figure.CopyTo(S, 0);
-            TetrisField.TetraminoErase(currentTetramino);
-            for (int i = 0; i < S.Length; i++)
+            if (currentTetramino.NameFig != 'O')
             {
-                double x = S[i].X;
-                S[i].X = -S[i].Y;
-                S[i].Y = x;
+                Point pos = currentTetramino.Position;
+                Point[] S = new Point[4];
+                Point[] figure = currentTetramino.Cells;
+                bool canMove = true;
+                figure.CopyTo(S, 0);
+                TetrisField.TetraminoErase(currentTetramino);
+                for (int i = 0; i < S.Length; i++)
+                {
+                    double x = S[i].X;
+                    S[i].X = -S[i].Y;
+                    S[i].Y = x;
 
-                if (((int)((S[i].Y + pos.Y) + 1)) <= 0) // сверху - стена
-                {
-                    canMove = false;
+                    if (((int)((S[i].Y + pos.Y) + 1)) <= 0) // сверху - стена
+                    {
+                        canMove = false;
+                    }
+                    else if (((int)((S[i].Y + pos.Y) + 1)) >= TetrisField.rows) // снизу - стена
+                    {
+                        canMove = false;
+                    }
+                    else if (((int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1) + 1) <= 0) //слева - стена
+                    {
+                        canMove = false;
+                    }
+                    else if (((int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1) + 1) > TetrisField.columns) // справа - стена
+                    {
+                        canMove = false;
+                    }
+                    else if (TetrisField.Field[(int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1),
+                        (int)(S[i].Y + pos.Y)].Fill != GridField.fieldBrush)
+                    {
+                        canMove = false;
+                    }
                 }
-                else if (((int)((S[i].Y + pos.Y) + 1)) >= TetrisField.rows) // снизу - стена
-                {
-                    canMove = false;
-                }
-                else if (((int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1) + 1) <= 0) //слева - стена
-                {
-                    canMove = false;
-                }
-                else if (((int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1) + 1) > TetrisField.columns) // справа - стена
-                {
-                    canMove = false;
-                }
-                else if (TetrisField.Field[(int)(S[i].X + pos.X) + ((TetrisField.columns / 2) - 1),
-                    (int)(S[i].Y + pos.Y)].Fill != GridField.fieldBrush)
-                {
-                    canMove = false;
-                }
+                if (canMove)
+                    currentTetramino.Turn();
+                TetrisField.TetraminoDraw(currentTetramino);
+
             }
-            if (canMove)
-                currentTetramino.Turn();
-            TetrisField.TetraminoDraw(currentTetramino);
-            
         }
     }
+
 }

@@ -18,6 +18,7 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
+            RecordsWindow.GetRecord();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -37,6 +38,13 @@ namespace Tetris
             CustomWindow customWindow = new CustomWindow();
             customWindow.Owner = this;
             customWindow.ShowDialog();
+        }
+
+        private void RecordsButton_Click(object sender, RoutedEventArgs e)
+        {
+            RecordsWindow recordsWindow = new RecordsWindow();
+            recordsWindow.Owner = this;
+            recordsWindow.ShowDialog();
         }
     }
 

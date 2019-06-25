@@ -149,7 +149,7 @@ namespace Tetris
             FigureParams.CellsDic[fig].ToArray().CopyTo(cells, 0);
             NameFig = fig;
         }
-        public void SetFig(char f)
+        private void SetFig(char f)
         {
             color = FigureParams.ColorsDic[f];
             cells = new Point[FigureParams.CellsDic[f].Length];

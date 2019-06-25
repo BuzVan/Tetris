@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\
 Tetris
 none
 false
 DEBUG;TRACE
-I:\4семестр\Учебная практика\Tetris\Tetris\App.xaml
-3-411191450
+D:\4семестр\Учебная практика\Tetris\Tetris\App.xaml
+557331947
 
-13249997643
+151132295889
 131569487696
-CustomWindow.xaml;GameWindow.xaml;MainWindow.xaml;
+CustomWindow.xaml;GameWindow.xaml;InputName.xaml;MainWindow.xaml;RecordsTable.xaml;
 
 False
 

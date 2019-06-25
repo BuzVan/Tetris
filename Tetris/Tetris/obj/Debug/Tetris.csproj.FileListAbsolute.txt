@@ -43,3 +43,15 @@ I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameW
 I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.g.cs
 I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.baml
 I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.g.cs
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.baml
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.baml
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\CustomWindow.g.cs
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\GameWindow.g.cs
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\RecordsTable.baml
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\RecordsTable.g.cs
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.baml
+D:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.g.cs
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.baml
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\RecordsTable.baml
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\InputName.g.cs
+I:\4семестр\Учебная практика\Tetris\Tetris\obj\Debug\RecordsTable.g.cs
