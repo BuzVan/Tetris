@@ -11,7 +11,7 @@ namespace Tetris
     
 
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Главное меню игры
     /// </summary>
     public partial class MainWindow : Window
     {

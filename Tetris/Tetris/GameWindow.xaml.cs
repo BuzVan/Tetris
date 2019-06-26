@@ -16,7 +16,7 @@ using System.Windows.Threading;
 namespace Tetris
 {
     /// <summary>
-    /// Логика взаимодействия для GameWindow.xaml
+    /// окно игры
     /// </summary>
     public partial class GameWindow : Window
     {
@@ -79,7 +79,7 @@ namespace Tetris
                 GameOver();
             if (myBoard.LvlUp && MaxLevel > myBoard.LVL)
             {
-                Timer.Interval = new TimeSpan(0, 0, 0, 0, GameSpeed - SpeedStep * myBoard.LVL);
+                Timer.Interval = new TimeSpan(0, 0, 0, 0, GameSpeed - SpeedStep * (myBoard.LVL - 1));
                 myBoard.LvlUp = false;
                 LvlText.Content = "Level: " + myBoard.LVL;
                 if (MaxLevel == myBoard.LVL)

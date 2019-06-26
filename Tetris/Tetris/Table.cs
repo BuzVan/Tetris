@@ -7,10 +7,20 @@ namespace Tetris
 {
 
 
-    class GridField
+    class GridField //поле клеток для фигур тетрамино
     {
+        /// <summary>
+        /// цвет фона
+        /// </summary>
         static public Brush fieldBrush = Brushes.White;
+        /// <summary>
+        /// цвет границы клеток
+        /// </summary>
         static public Brush granBrush = Brushes.White;
+        /// <summary>
+        /// нарисовать на поле тетрамино
+        /// </summary>
+        /// <param name="tetramino"></param>
         public void TetraminoDraw(Tetramino tetramino)
         {
             Point pos = tetramino.Position;
@@ -22,6 +32,9 @@ namespace Tetris
                     (int)(P.Y + pos.Y)].Fill = color;
             }
         }
+        /// <summary>
+        /// стереть фигуру тетрамино из поля
+        /// </summary>
         public void TetraminoErase(Tetramino tetramino)
         {
             Point pos = tetramino.Position;
@@ -32,9 +45,21 @@ namespace Tetris
                     (int)(S.Y + pos.Y)].Fill = GridField.fieldBrush;
             }
         }
+        /// <summary>
+        /// высота поля
+        /// </summary>
         public int rows;
+        /// <summary>
+        /// ширина поля
+        /// </summary>
         public int columns;
+        /// <summary>
+        /// массив клеток
+        /// </summary>
         public Rectangle[,] Field;
+        /// <summary>
+        /// создать из grid игровое поле
+        /// </summary>
         public GridField(Grid grid)
         {
             grid.Background = GridField.fieldBrush;
@@ -56,6 +81,9 @@ namespace Tetris
                 }
             }
         }
+        /// <summary>
+        /// нарисовать игровое поле
+        /// </summary>
         public void DrowField()
         {
             for (int x = 0; x < columns; x++)
@@ -69,28 +97,42 @@ namespace Tetris
         }
 
     }
-    public class Table
+    public class Table // Игровое поле
     {
      
 
         private int score;
         private int linesAssembled;
         private int lvl;
+        /// <summary>
+        /// Количество линий до следующего уровня
+        /// </summary>
         public int StepLvl = 3;
         private int thisLevelLinesAssembled;
         private bool gameOver = false;
+        /// <summary>
+        /// Настал ли новый уровень
+        /// </summary>
         public bool LvlUp;
         private Tetramino currentTetramino;
         
         private GridField TetrisField;
         private GridField NextFigGrid;
         private Tetramino nextTetramino;
+        /// <summary>
+        /// Получить прогресс по уровню в процентах
+        /// </summary>
         public int GetLvlProc()
         {
             if (linesAssembled == 0 || thisLevelLinesAssembled == StepLvl) return 0;
-            return 100 * thisLevelLinesAssembled/ StepLvl;
+            return 100 * thisLevelLinesAssembled / StepLvl;
         }
 
+        /// <summary>
+        /// Создать игровое поле
+        /// </summary>
+        /// <param name="TetrisGrid">Grid основного игрового поля</param>
+        /// <param name="NextFigGrid">Grid для показа следующей фигуры</param>
         public Table(Grid TetrisGrid, Grid NextFigGrid)
         {
             TetrisField = new GridField(TetrisGrid);
@@ -100,23 +142,41 @@ namespace Tetris
             linesAssembled = 0;
             lvl = 1;
             thisLevelLinesAssembled = 0;
-            
+
             currentTetramino = new Tetramino();
             TetrisField.TetraminoDraw(currentTetramino);
             nextTetramino = new Tetramino();
             this.NextFigGrid.TetraminoDraw(nextTetramino);
         }
+        /// <summary>
+        /// Набранные очки
+        /// </summary>
         public int Score => score;
+        /// <summary>
+        /// Количество убранных линий
+        /// </summary>
         public int Lines => linesAssembled;
+        /// <summary>
+        /// Текущий уровень
+        /// </summary>
         public int LVL => lvl;
+        /// <summary>
+        /// Настал конец игры
+        /// </summary>
         public bool GameOver => gameOver;
 
+        /// <summary>
+        /// Проверка конца игры
+        /// </summary>
         private void CheckGameOver()
         {
             for (int x = 0; x < TetrisField.columns; x++)
                 if (TetrisField.Field[x, 0].Fill != GridField.fieldBrush)
                     gameOver = true;
         }
+        /// <summary>
+        /// Проверка собранной линии
+        /// </summary>
         private void CheckRows()
         {
             bool full;
@@ -136,19 +196,22 @@ namespace Tetris
                 {
                     kol++;
                     RemoveRow(y);
-                    score += 100;
+                    score += 100 * lvl;
                     linesAssembled += 1;
                     thisLevelLinesAssembled += 1;
-                    
+
                 }
             }
 
-            if (kol > 0)
+            if (kol > 1)
             {
-                score += (kol - 1) * 100;//бонус за несколько подряд удалённых линий
+                score += kol * kol * 100 * lvl;//бонус за несколько подряд удалённых линий
                 CheckLvlUp();
             }
         }
+        /// <summary>
+        /// Проверка нового уровня
+        /// </summary>
         private void CheckLvlUp()
         {
             if (thisLevelLinesAssembled >= StepLvl)
@@ -159,6 +222,9 @@ namespace Tetris
                 LvlUp = true;
             }
         }
+        /// <summary>
+        /// Удалить линию из поля
+        /// </summary>
         private void RemoveRow(int row)
         {
             for (int y = row; y > 0; y--)
@@ -169,6 +235,9 @@ namespace Tetris
                 }
             }
         }
+        /// <summary>
+        /// Фигуру влево
+        /// </summary>
         public void CurentTetraminoMoveLeft()
         {
             Point pos = currentTetramino.Position;
@@ -193,6 +262,9 @@ namespace Tetris
                 currentTetramino.MoveLeft();
             TetrisField.TetraminoDraw(currentTetramino);
         }
+        /// <summary>
+        /// Фигуру вправо
+        /// </summary>
         public void CurTetraminoMoveRight()
         {
             Point pos = currentTetramino.Position;
@@ -215,10 +287,13 @@ namespace Tetris
                 currentTetramino.MoveRight();
             TetrisField.TetraminoDraw(currentTetramino);
         }
-        public void CurTetraminoMovDown(bool CoolGame=false)
+        /// <summary>
+        /// Фигуру вниз
+        /// </summary>
+        public void CurTetraminoMovDown(bool CoolGame = false)
         {
             // бонус за быструю игру (нажата кнопка вниз)
-            if (CoolGame) score += 1*lvl;
+            if (CoolGame) score += 1 * lvl;
             Point pos = currentTetramino.Position;
             Point[] figure = currentTetramino.Cells;
             bool canMove = true;
@@ -249,9 +324,12 @@ namespace Tetris
                 NextFigGrid.TetraminoErase(nextTetramino);
                 nextTetramino = new Tetramino();
                 NextFigGrid.TetraminoDraw(nextTetramino);
-                score += LVL * 10; //бонус за новую фигуру
+                score += lvl * 10; //бонус за новую фигуру
             }
         }
+        /// <summary>
+        /// Повернуть фигуру
+        /// </summary>
         public void CurTetraminoMoveRotate()
         {
             if (currentTetramino.NameFig != 'O')

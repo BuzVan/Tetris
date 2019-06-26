@@ -15,19 +15,32 @@ using System.Windows.Shapes;
 
 namespace Tetris
 {
-    /// <summary>
-    /// Логика взаимодействия для RecordsTable.xaml
-    /// </summary>
-    public class Record: IComparer<Record>
+   
+    public class Record: IComparer<Record> // класс Записи в таблице рекордов
     {
+        /// <summary>
+        /// Новая запись об игроке
+        /// </summary>
+        /// <param name="Name">Имя игрока</param>
+        /// <param name="Lines">количество собраных линий</param>
+        /// <param name="Score">количество набранных очков</param>
         public Record(string Name, int Lines, int Score)
         {
             this.Name = Name;
             this.Lines = Lines;
             this.Score = Score;
         }
+        /// <summary>
+        /// Имя игрока
+        /// </summary>
         public string Name;
+        /// <summary>
+        /// Количество собранных линий
+        /// </summary>
         public int Lines;
+        /// <summary>
+        /// Количество набранных очков
+        /// </summary>
         public int Score;
 
 
@@ -40,9 +53,15 @@ namespace Tetris
             return String.Format("{0} {1} {2}", Name, Lines, Score);
         }
     }
+    /// <summary>
+    /// Таблица рекордов
+    /// </summary>
     public partial class RecordsWindow : Window
     {
         static string file = "result.txt";
+        /// <summary>
+        /// таблица рекордов
+        /// </summary>
         public static List<Record> result = new List<Record>();
         public RecordsWindow()
         {
@@ -77,6 +96,9 @@ namespace Tetris
 
 
         }
+        /// <summary>
+        /// добавить запись в таблицу рекордов
+        /// </summary>
         public static void AddRecord(string Name, int Lines, int Score)
         {
             GetRecord();

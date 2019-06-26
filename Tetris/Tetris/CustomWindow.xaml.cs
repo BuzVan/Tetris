@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace Tetris
 {
     /// <summary>
-    /// Логика взаимодействия для CustomWindow.xaml
+    /// Окно кастомизации
     /// </summary>
     public partial class CustomWindow : Window
     {
@@ -177,6 +177,7 @@ namespace Tetris
             {
                 GetGridField(f).DrowField();
                 t = new Tetramino(f);
+                t.MoveDown();
                 GetGridField(f).TetraminoDraw(t);
                
             }
@@ -186,6 +187,7 @@ namespace Tetris
                 {
                     GetGridField(item).DrowField();
                     t = new Tetramino(item);
+                    t.MoveDown();
                     GetGridField(item).TetraminoDraw(t);
                 }
                 Main.DrowField();

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace Tetris
 {
     /// <summary>
-    /// Логика взаимодействия для InputName.xaml
+    /// Ввод имени
     /// </summary>
     public partial class InputName : Window
     {
